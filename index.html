@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>96 PROSPERITY MEDIA LIMITED | 您的全球增量引擎</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins for headings (modern, round) & Inter for body -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // 活力橙作为品牌主色调
+                        brand: {
+                            light: '#FF8A3D',
+                            DEFAULT: '#FF5722', // 核心活力橙
+                            dark: '#E64A19',
+                        },
+                        dark: '#0F172A', // 深色背景用于对比
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS for specific animations and styles -->
+    <style>
+        /* 隐藏滚动条但保留功能 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FF5722; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #E64A19; 
+        }
+
+        /* 元素视差进入动画类 */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 渐变文本 */
+        .text-gradient {
+            background: linear-gradient(135deg, #FF5722 0%, #FF8A3D 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* 橙色发光阴影 */
+        .shadow-glow {
+            box-shadow: 0 10px 30px -10px rgba(255, 87, 34, 0.5);
+        }
+        .hover-shadow-glow:hover {
+            box-shadow: 0 20px 40px -10px rgba(255, 87, 34, 0.7);
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-slate-50 antialiased overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/80 backdrop-blur-md shadow-sm py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer">
+                    <span class="font-heading font-black text-2xl tracking-tighter text-dark">
+                        96 PROSPERITY<span class="text-brand text-3xl">.</span>
+                    </span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="text-gray-600 hover:text-brand font-medium transition">首页</a>
+                    <a href="#services" class="text-gray-600 hover:text-brand font-medium transition">核心服务</a>
+                    <a href="#advantages" class="text-gray-600 hover:text-brand font-medium transition">我们的优势</a>
+                    <a href="#cases" class="text-gray-600 hover:text-brand font-medium transition">成功案例</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-brand focus:outline-none text-2xl">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-2 text-center">
+                <a href="#home" class="block px-3 py-3 text-gray-700 font-medium hover:bg-orange-50 hover:text-brand rounded-lg">首页</a>
+                <a href="#services" class="block px-3 py-3 text-gray-700 font-medium hover:bg-orange-50 hover:text-brand rounded-lg">核心服务</a>
+                <a href="#advantages" class="block px-3 py-3 text-gray-700 font-medium hover:bg-orange-50 hover:text-brand rounded-lg">我们的优势</a>
+                <a href="#cases" class="block px-3 py-3 text-gray-700 font-medium hover:bg-orange-50 hover:text-brand rounded-lg">成功案例</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-white">
+        <!-- Background Decorative Elements -->
+        <div class="absolute top-0 left-1/2 w-full -translate-x-1/2 h-full overflow-hidden z-0 pointer-events-none">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-brand rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+            <div class="absolute top-40 right-10 w-72 h-72 bg-yellow-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+            <div class="absolute -bottom-8 left-1/2 w-72 h-72 bg-pink-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="inline-block mb-4 px-4 py-1.5 rounded-full bg-orange-100 text-brand font-semibold text-sm tracking-wide border border-orange-200">
+                🚀 专注海外效果营销，打造爆款ROI
+            </div>
+            <h1 class="font-heading text-5xl md:text-7xl font-black text-dark mb-6 leading-tight">
+                点燃您的全球增长引擎 <br>
+                <span class="text-gradient">重塑ROI新标准</span>
+            </h1>
+            <p class="mt-4 max-w-2xl text-lg md:text-xl text-gray-600 mx-auto mb-10 leading-relaxed">
+                96 PROSPERITY MEDIA 为出海游戏、电商及品牌提供 Facebook, Google, TikTok 平台的全链路买量策略。不谈虚荣指标，我们只对<b>最终转化</b>负责。
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#contact" class="px-8 py-4 w-full sm:w-auto bg-brand text-white rounded-full font-bold text-lg hover:bg-brand-dark transition transform hover:-translate-y-1 shadow-glow flex items-center justify-center gap-2">
+                    获取免费流量审计 <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#services" class="px-8 py-4 w-full sm:w-auto bg-white text-dark border-2 border-gray-200 rounded-full font-bold text-lg hover:border-brand hover:text-brand transition flex items-center justify-center gap-2">
+                    探索核心业务
+                </a>
+            </div>
+
+            <!-- Dashboard Mockup Image -->
+            <div class="mt-20 relative max-w-5xl mx-auto reveal">
+                <div class="absolute -inset-1 bg-gradient-to-r from-brand to-yellow-400 rounded-2xl blur opacity-30"></div>
+                <div class="relative bg-dark rounded-2xl shadow-2xl border border-gray-700 overflow-hidden">
+                    <div class="flex items-center px-4 py-3 bg-gray-800 border-b border-gray-700">
+                        <div class="flex space-x-2">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        </div>
+                        <div class="mx-auto text-xs text-gray-400 font-mono">Real-time Performance Dashboard</div>
+                    </div>
+                    <div class="p-6 md:p-10 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                        <!-- Stat card -->
+                        <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700 hover:border-brand/50 transition">
+                            <p class="text-gray-400 text-sm mb-1">Total Ad Spend (Monthly)</p>
+                            <h3 class="text-3xl font-heading font-bold text-white">$10M+</h3>
+                            <div class="mt-2 flex items-center text-green-400 text-sm">
+                                <i class="fas fa-arrow-trend-up mr-1"></i> +24.5% vs last month
+                            </div>
+                        </div>
+                        <!-- Stat card -->
+                        <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700 hover:border-brand/50 transition">
+                            <p class="text-gray-400 text-sm mb-1">Average ROI (E-commerce)</p>
+                            <h3 class="text-3xl font-heading font-bold text-white">450%</h3>
+                            <div class="mt-2 flex items-center text-green-400 text-sm">
+                                <i class="fas fa-arrow-trend-up mr-1"></i> Target Exceeded
+                            </div>
+                        </div>
+                        <!-- Stat card -->
+                        <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700 hover:border-brand/50 transition">
+                            <p class="text-gray-400 text-sm mb-1">Cost Per Acquisition (CPA)</p>
+                            <h3 class="text-3xl font-heading font-bold text-brand">-32%</h3>
+                            <div class="mt-2 flex items-center text-brand text-sm">
+                                <i class="fas fa-arrow-trend-down mr-1"></i> Optimized this quarter
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trusted By / Platforms -->
+    <section class="py-10 bg-gray-50 border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-sm font-semibold text-gray-400 uppercase tracking-wider mb-6">全媒体矩阵覆盖，官方认证合作伙伴</p>
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                <!-- Logos (using FA icons as placeholders for platforms) -->
+                <div class="flex items-center gap-2 text-2xl font-bold text-[#1877F2]">
+                    <i class="fab fa-facebook text-3xl"></i> Meta
+                </div>
+                <div class="flex items-center gap-2 text-2xl font-bold text-[#EA4335]">
+                    <i class="fab fa-google text-3xl"></i> Google Ads
+                </div>
+                <div class="flex items-center gap-2 text-2xl font-bold text-black">
+                    <i class="fab fa-tiktok text-3xl"></i> TikTok for Business
+                </div>
+                <div class="flex items-center gap-2 text-2xl font-bold text-[#E1306C]">
+                    <i class="fab fa-instagram text-3xl"></i> Instagram
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h2 class="text-brand font-bold tracking-wide uppercase text-sm mb-2">Core Services</h2>
+                <h3 class="font-heading text-4xl md:text-5xl font-black text-dark mb-4">精准触达，引爆转化</h3>
+                <p class="text-gray-600 text-lg">我们提供端到端的海外买量服务，从策略制定到素材制作，再到数据调优，全方位保障您的ROI。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-slate-50 rounded-3xl p-8 border border-gray-100 hover-shadow-glow transition-all duration-300 reveal group cursor-pointer relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-orange-100 rounded-bl-full -z-10 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="w-16 h-16 bg-white rounded-2xl shadow-sm flex items-center justify-center text-3xl text-[#1877F2] mb-6 border border-gray-100">
+                        <i class="fab fa-meta"></i>
+                    </div>
+                    <h4 class="text-2xl font-heading font-bold text-dark mb-3">Meta (FB/IG) 投放</h4>
+                    <p class="text-gray-600 mb-6">利用Meta强大的机器学习（Advantage+），精准定位高意向受众。从精美图文到竖屏短视频，打造沉浸式转化体验。</p>
+                    <ul class="space-y-2 text-sm text-gray-700 font-medium">
+                        <li><i class="fas fa-check text-brand mr-2"></i>A/B 测试与创意迭代</li>
+                        <li><i class="fas fa-check text-brand mr-2"></i>Pixel 深度事件追踪</li>
+                        <li><i class="fas fa-check text-brand mr-2"></i>重定向与受众留存激活</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-dark text-white rounded-3xl p-8 border border-gray-800 hover-shadow-glow transition-all duration-300 reveal group cursor-pointer relative overflow-hidden transform md:-translate-y-4">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand/20 rounded-bl-full -z-10 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="w-16 h-16 bg-gray-800 rounded-2xl shadow-sm flex items-center justify-center text-3xl text-white mb-6 border border-gray-700">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <h4 class="text-2xl font-heading font-bold mb-3">Google Ads 搜索与展示</h4>
+                    <p class="text-gray-400 mb-6">收割主动搜索流量，覆盖全球最大媒体网络。结合搜索词分析与展示广告网络，在用户决策的关键时刻出现。</p>
+                    <ul class="space-y-2 text-sm text-gray-300 font-medium">
+                        <li><i class="fas fa-check text-brand mr-2"></i>搜索词精准卡位 (SEM)</li>
+                        <li><i class="fas fa-check text-brand mr-2"></i>UAC 游戏/应用出海拉新</li>
+                        <li><i class="fas fa-check text-brand mr-2"></i>Performance Max 最大化广告</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-slate-50 rounded-3xl p-8 border border-gray-100 hover-shadow-glow transition-all duration-300 reveal group cursor-pointer relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-orange-100 rounded-bl-full -z-10 group-hover:scale-150 transition-transform duration-500"></div>
+                    <div class="w-16 h-16 bg-white rounded-2xl shadow-sm flex items-center justify-center text-3xl text-black mb-6 border border-gray-100">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <h4 class="text-2xl font-heading font-bold text-dark mb-3">TikTok 效果营销</h4>
+                    <p class="text-gray-600 mb-6">抓住Z世代流量红利，用原生UGC感的内容打动用户。专属创意团队提供从脚本策划到拍摄剪辑的一站式服务。</p>
+                    <ul class="space-y-2 text-sm text-gray-700 font-medium">
+                        <li><i class="fas fa-check text-brand mr-2"></i>原生爆款短视频制作</li>
+                        <li><i class="fas fa-check text-brand mr-2"></i>达人营销 (Spark Ads)</li>
+                        <li><i class="fas fa-check text-brand mr-2"></i>本地化内容深度定制</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advantages Section -->
+    <section id="advantages" class="py-24 bg-dark text-white relative overflow-hidden">
+        <!-- Abstract background shape -->
+        <div class="absolute -left-40 top-1/2 -translate-y-1/2 w-96 h-96 bg-brand rounded-full mix-blend-screen filter blur-[100px] opacity-20 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row gap-16 items-center">
+                <!-- Left text -->
+                <div class="md:w-1/2 reveal">
+                    <h2 class="text-brand font-bold tracking-wide uppercase text-sm mb-2">Why Choose Us</h2>
+                    <h3 class="font-heading text-4xl md:text-5xl font-black mb-6 leading-tight">拒绝玄学摸鱼<br>让数据为你<span class="text-brand">说话</span></h3>
+                    <p class="text-gray-400 text-lg mb-8 leading-relaxed">
+                        在96 PROSPERITY MEDIA，我们不相信“玄学优化”。我们依靠硬核的数据分析模型、本地化的创意实验室，以及身经百战的投手团队，为你省下每一分冤枉钱，将预算转化为真实的业绩增长。
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="border-l-2 border-brand pl-4">
+                            <div class="text-3xl font-heading font-bold text-white mb-1 counter" data-target="150">0</div>
+                            <div class="text-sm text-gray-400">管理超过 $1.5亿 广告费</div>
+                        </div>
+                        <div class="border-l-2 border-brand pl-4">
+                            <div class="text-3xl font-heading font-bold text-white mb-1"><span class="counter" data-target="98">0</span>%</div>
+                            <div class="text-sm text-gray-400">客户留存率与续约率</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right grid -->
+                <div class="md:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <!-- USP Item -->
+                    <div class="bg-gray-800/80 backdrop-blur border border-gray-700 p-6 rounded-2xl reveal hover:border-brand transition">
+                        <div class="w-12 h-12 bg-gray-900 text-brand rounded-full flex items-center justify-center text-xl mb-4">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">极致ROI导向</h4>
+                        <p class="text-gray-400 text-sm">不看虚假繁荣的曝光量，所有的优化动作直指CPA与ROAS，确保利润空间最大化。</p>
+                    </div>
+                    <!-- USP Item -->
+                    <div class="bg-gray-800/80 backdrop-blur border border-gray-700 p-6 rounded-2xl reveal hover:border-brand transition sm:translate-y-8">
+                        <div class="w-12 h-12 bg-gray-900 text-brand rounded-full flex items-center justify-center text-xl mb-4">
+                            <i class="fas fa-photo-video"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">黄金3秒创意室</h4>
+                        <p class="text-gray-400 text-sm">内部专属设计及视频团队，结合本地化洞察，批量制造高点击率、高转化率的爆款素材。</p>
+                    </div>
+                    <!-- USP Item -->
+                    <div class="bg-gray-800/80 backdrop-blur border border-gray-700 p-6 rounded-2xl reveal hover:border-brand transition">
+                        <div class="w-12 h-12 bg-gray-900 text-brand rounded-full flex items-center justify-center text-xl mb-4">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">全链路数据透视</h4>
+                        <p class="text-gray-400 text-sm">打通三方归因（AppsFlyer, Adjust等），实时监控多渠道数据表现，拒绝黑盒。</p>
+                    </div>
+                    <!-- USP Item -->
+                    <div class="bg-gray-800/80 backdrop-blur border border-gray-700 p-6 rounded-2xl reveal hover:border-brand transition sm:translate-y-8">
+                        <div class="w-12 h-12 bg-gray-900 text-brand rounded-full flex items-center justify-center text-xl mb-4">
+                            <i class="fas fa-users-cog"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">顶尖优化师矩阵</h4>
+                        <p class="text-gray-400 text-sm">投手团队均具备5年以上大厂或知名代理商背景，拥有千万级项目操盘经验。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cases Section (新增成功案例板块) -->
+    <section id="cases" class="py-24 bg-white relative overflow-hidden">
+        <!-- 装饰性背景球 -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-orange-50 rounded-full mix-blend-multiply filter blur-3xl opacity-60 pointer-events-none transform translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-blue-50 rounded-full mix-blend-multiply filter blur-3xl opacity-40 pointer-events-none transform -translate-x-1/2 translate-y-1/2"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h2 class="text-brand font-bold tracking-wide uppercase text-sm mb-2">Success Stories</h2>
+                <h3 class="font-heading text-4xl md:text-5xl font-black text-dark mb-4">用真实数据，验证增长策略</h3>
+                <p class="text-gray-600 text-lg">从独立站到重度游戏，我们用一套成熟的买量打法，帮助不同赛道的出海品牌实现逆势破局。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Case 1: E-commerce -->
+                <div class="bg-white rounded-3xl p-8 border border-gray-100 hover-shadow-glow transition-all duration-300 reveal group shadow-md hover:shadow-xl">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="px-3 py-1 bg-blue-50 text-blue-600 border border-blue-100 rounded-full text-xs font-bold tracking-wide">DTC 品牌出海</div>
+                        <div class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-brand group-hover:text-white transition-colors"><i class="fas fa-arrow-right -rotate-45"></i></div>
+                    </div>
+                    <h4 class="text-2xl font-heading font-bold text-dark mb-2">某头部快时尚女装</h4>
+                    <p class="text-gray-500 text-sm mb-8 h-12">通过 TikTok 达人原生视频 + Meta ASC 自动化广告，成功攻克北美市场高获客成本难题。</p>
+                    <div class="grid grid-cols-2 gap-4 border-t border-gray-100 pt-6">
+                        <div>
+                            <p class="text-xs text-gray-400 mb-1">ROAS 提升</p>
+                            <p class="text-2xl font-bold text-brand">+ 120%</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-400 mb-1">CPA 下降</p>
+                            <p class="text-2xl font-bold text-green-500">- 45%</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case 2: Gaming -->
+                <div class="bg-white rounded-3xl p-8 border border-gray-100 hover-shadow-glow transition-all duration-300 reveal group shadow-md hover:shadow-xl" style="transition-delay: 100ms;">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="px-3 py-1 bg-purple-50 text-purple-600 border border-purple-100 rounded-full text-xs font-bold tracking-wide">中重度游戏</div>
+                        <div class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-brand group-hover:text-white transition-colors"><i class="fas fa-arrow-right -rotate-45"></i></div>
+                    </div>
+                    <h4 class="text-2xl font-heading font-bold text-dark mb-2">某二次元 RPG 爆款</h4>
+                    <p class="text-gray-500 text-sm mb-8 h-12">Google UAC 算法喂养与本地化真人解说素材结合，在日韩市场实现大规模高质量用户获取。</p>
+                    <div class="grid grid-cols-2 gap-4 border-t border-gray-100 pt-6">
+                        <div>
+                            <p class="text-xs text-gray-400 mb-1">首周登顶</p>
+                            <p class="text-2xl font-bold text-brand">App Store</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-400 mb-1">次日留存率</p>
+                            <p class="text-2xl font-bold text-green-500">55%+</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case 3: Tools/App -->
+                <div class="bg-white rounded-3xl p-8 border border-gray-100 hover-shadow-glow transition-all duration-300 reveal group shadow-md hover:shadow-xl" style="transition-delay: 200ms;">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="px-3 py-1 bg-yellow-50 text-yellow-700 border border-yellow-100 rounded-full text-xs font-bold tracking-wide">工具应用</div>
+                        <div class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-brand group-hover:text-white transition-colors"><i class="fas fa-arrow-right -rotate-45"></i></div>
+                    </div>
+                    <h4 class="text-2xl font-heading font-bold text-dark mb-2">某 AI 图像处理 App</h4>
+                    <p class="text-gray-500 text-sm mb-8 h-12">提炼“黄金3秒”变身特效，配合极速起量测试策略，在东南亚及拉美市场快速跑马圈地。</p>
+                    <div class="grid grid-cols-2 gap-4 border-t border-gray-100 pt-6">
+                        <div>
+                            <p class="text-xs text-gray-400 mb-1">月新增下载</p>
+                            <p class="text-2xl font-bold text-brand">200W+</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-400 mb-1">单次安装成本</p>
+                            <p class="text-2xl font-bold text-green-500">< $0.1</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow Section -->
+    <section class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h3 class="font-heading text-4xl font-black text-dark mb-4">科学系统的投放方法论</h3>
+                <p class="text-gray-600">从冷启动到放量爆发，我们遵循严密的4步增长模型。</p>
+            </div>
+
+            <div class="relative">
+                <!-- Connecting Line for Desktop -->
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-gray-200 -translate-y-1/2 z-0"></div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
+                    <!-- Step 1 -->
+                    <div class="text-center reveal">
+                        <div class="w-20 h-20 mx-auto bg-white border-4 border-brand text-brand rounded-full flex items-center justify-center text-2xl font-bold mb-6 shadow-lg">01</div>
+                        <h4 class="font-bold text-xl text-dark mb-2">深度审计诊断</h4>
+                        <p class="text-sm text-gray-500">分析过往账户数据，找出漏斗流失点，明确核心受众画像及竞品策略。</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="text-center reveal" style="transition-delay: 100ms;">
+                        <div class="w-20 h-20 mx-auto bg-white border-4 border-gray-200 text-gray-400 rounded-full flex items-center justify-center text-2xl font-bold mb-6 shadow-sm hover:border-brand hover:text-brand transition-colors">02</div>
+                        <h4 class="font-bold text-xl text-dark mb-2">定制策略与素材</h4>
+                        <p class="text-sm text-gray-500">制定针对性的媒体组合策略，并由创意实验室产出第一批多维度测试素材。</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="text-center reveal" style="transition-delay: 200ms;">
+                        <div class="w-20 h-20 mx-auto bg-white border-4 border-gray-200 text-gray-400 rounded-full flex items-center justify-center text-2xl font-bold mb-6 shadow-sm hover:border-brand hover:text-brand transition-colors">03</div>
+                        <h4 class="font-bold text-xl text-dark mb-2">敏捷AB测试</h4>
+                        <p class="text-sm text-gray-500">小预算快速试错，寻找"受众-素材-出价"的最佳结合点（Winning Formula）。</p>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="text-center reveal" style="transition-delay: 300ms;">
+                        <div class="w-20 h-20 mx-auto bg-brand border-4 border-brand text-white rounded-full flex items-center justify-center text-2xl font-bold mb-6 shadow-glow animate-pulse">04</div>
+                        <h4 class="font-bold text-xl text-dark mb-2">霸榜与放量</h4>
+                        <p class="text-sm text-gray-500">当模型跑通且ROI达标后，利用算法工具进行系统性预算放大，实现指数级增长。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA / Contact Section -->
+    <section id="contact" class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="bg-brand rounded-3xl p-8 md:p-16 shadow-2xl overflow-hidden relative">
+                <!-- Abstract bg for CTA -->
+                <div class="absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none">
+                    <div class="absolute -top-20 -right-20 w-96 h-96 bg-white opacity-10 rounded-full blur-2xl"></div>
+                    <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-black opacity-10 rounded-full blur-2xl"></div>
+                </div>
+
+                <div class="flex flex-col lg:flex-row gap-12 relative z-10">
+                    <!-- Text Side -->
+                    <div class="lg:w-1/2 text-white reveal">
+                        <h2 class="font-heading text-4xl md:text-5xl font-black mb-6">准备好突破增长瓶颈了吗？</h2>
+                        <p class="text-brand-100 text-lg mb-8 opacity-90">
+                            现在联系我们，我们的资深增长策略师将为您提供一份免费的<b>账户审计报告</b>及<b>定制化出海增长方案</b>。
+                        </p>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center"><i class="fas fa-envelope"></i></div>
+                                <span>hello@96prosperity.com</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center"><i class="fas fa-map-marker-alt"></i></div>
+                                <span>Global Headquarters, Hong Kong</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Form Side -->
+                    <div class="lg:w-1/2 reveal">
+                        <div class="bg-white rounded-2xl p-8 shadow-xl">
+                            <h3 class="text-2xl font-bold text-dark mb-6">立即预约免费咨询</h3>
+                            <form class="space-y-4" onsubmit="event.preventDefault(); showSuccessMessage();">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">姓名</label>
+                                        <input type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand focus:border-brand outline-none transition" placeholder="您的称呼">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">公司/产品名称</label>
+                                        <input type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand focus:border-brand outline-none transition" placeholder="例如: 某某游戏/独立站">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">联系邮箱 / 微信</label>
+                                    <input type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand focus:border-brand outline-none transition" placeholder="方便我们联系到您">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">每月大概的推广预算 (可选)</label>
+                                    <select class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand focus:border-brand outline-none transition">
+                                        <option value="">请选择预算范围</option>
+                                        <option value="10k-50k">$10,000 - $50,000</option>
+                                        <option value="50k-100k">$50,000 - $100,000</option>
+                                        <option value="100k+">$100,000 以上</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">核心需求 / 面临的挑战</label>
+                                    <textarea rows="3" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand focus:border-brand outline-none transition resize-none" placeholder="例如：目前跑FB成本太高，想寻找新的起量方式..."></textarea>
+                                </div>
+                                <button type="submit" class="w-full bg-dark text-white font-bold py-4 rounded-lg hover:bg-gray-800 transition shadow-lg mt-2">
+                                    提交需求，获取专属方案
+                                </button>
+                            </form>
+                            
+                            <!-- Success Message Mockup -->
+                            <div id="success-msg" class="hidden mt-4 p-4 bg-green-50 text-green-700 border border-green-200 rounded-lg text-center font-medium">
+                                <i class="fas fa-check-circle mr-2"></i> 提交成功！我们的优化师会在24小时内与您联系。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-gray-400 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-2">
+                    <span class="font-heading font-black text-2xl tracking-tighter text-white mb-4 block">
+                        96 PROSPERITY<span class="text-brand">.</span>
+                    </span>
+                    <p class="text-sm text-gray-500 max-w-sm">
+                        九六鼎盛廣告有限公司 (96 PROSPERITY MEDIA LIMITED) 致力于通过数据驱动和本地化创意，帮助全球企业在数字世界中实现爆发式增长。
+                    </p>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold mb-4">快捷链接</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#home" class="hover:text-brand transition">首页</a></li>
+                        <li><a href="#services" class="hover:text-brand transition">核心服务</a></li>
+                        <li><a href="#advantages" class="hover:text-brand transition">公司优势</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold mb-4">关注我们</h5>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs">
+                <p>&copy; 2026 96 PROSPERITY MEDIA LIMITED. All rights reserved.</p>
+                <div class="space-x-4 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white">隐私政策</a>
+                    <a href="#" class="hover:text-white">服务条款</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactions -->
+    <script>
+        // 1. Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 2. Navbar Shrink on Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-2', 'shadow-md');
+                navbar.classList.remove('py-4', 'shadow-sm');
+            } else {
+                navbar.classList.add('py-4', 'shadow-sm');
+                navbar.classList.remove('py-2', 'shadow-md');
+            }
+        });
+
+        // 3. Scroll Reveal Animation (Intersection Observer)
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Optional: stop observing once revealed
+                    // observer.unobserve(entry.target); 
+                }
+            });
+        };
+
+        const revealOptions = {
+            threshold: 0.15, // Trigger when 15% of element is visible
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+        
+        revealElements.forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // 4. Number Counter Animation for Stats
+        const counters = document.querySelectorAll('.counter');
+        let hasCounted = false;
+
+        const countUp = () => {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const duration = 2000; // ms
+                const increment = target / (duration / 16); // 60fps
+                
+                let current = 0;
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.innerText = Math.ceil(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCounter();
+            });
+        };
+
+        // Trigger count when the Advantages section is visible
+        const statsSection = document.getElementById('advantages');
+        const statsObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !hasCounted) {
+                countUp();
+                hasCounted = true;
+            }
+        }, { threshold: 0.5 });
+        
+        if(statsSection) statsObserver.observe(statsSection);
+
+        // 5. Mock Form Submission
+        function showSuccessMessage() {
+            const msg = document.getElementById('success-msg');
+            msg.classList.remove('hidden');
+            setTimeout(() => {
+                msg.classList.add('hidden');
+            }, 5000);
+            
+            // Clear form (mock)
+            document.querySelector('form').reset();
+        }
+    </script>
+</body>
+</html>
